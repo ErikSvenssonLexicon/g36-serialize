@@ -65,6 +65,14 @@ public class AppUser implements Serializable {
         this.role = role;
     }
 
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

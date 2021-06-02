@@ -1,0 +1,43 @@
+[ {
+  "id" : 1,
+  "todoTitle" : "Find Sarah",
+  "description" : "Terminate",
+  "deadline" : "2021-12-31T23:59:00",
+  "done" : false,
+  "assignee" : {
+    "id" : 1,
+    "username" : "terminator",
+    "password" : "hastalavista123",
+    "active" : true,
+    "role" : "admin",
+    "birthDate" : "2006-06-11"
+  }
+}, {
+  "id" : 1,
+  "todoTitle" : "Find Connor",
+  "description" : "Terminate",
+  "deadline" : "2021-12-31T23:59:00",
+  "done" : false,
+  "assignee" : {
+    "id" : 1,
+    "username" : "terminator",
+    "password" : "hastalavista123",
+    "active" : true,
+    "role" : "admin",
+    "birthDate" : "2006-06-11"
+  }
+}, {
+  "id" : 1,
+  "todoTitle" : "Run away",
+  "description" : "Survive",
+  "deadline" : "2021-12-31T23:59:00",
+  "done" : false,
+  "assignee" : {
+    "id" : 2,
+    "username" : "connor",
+    "password" : "connor123",
+    "active" : true,
+    "role" : "user",
+    "birthDate" : "1986-06-11"
+  }
+} ]
