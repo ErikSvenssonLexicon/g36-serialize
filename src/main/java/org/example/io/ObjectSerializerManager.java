@@ -1,5 +1,8 @@
 package org.example.io;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -41,6 +44,28 @@ public class ObjectSerializerManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public List<AppUser> loadAppUsersFromJSON(){
+        List<AppUser> appUsers = new ArrayList<>();
+        try{
+            File file = new File(JSON_DIR+APP_USERS_FILE);
+            appUsers = objectMapper.readValue(file, new TypeReference<ArrayList<AppUser>>() {});
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
+        return appUsers;
+    }
+
+    public List<TodoItem> loadTodoItemsFromJSON(){
+        List<TodoItem> todoItems = new ArrayList<>();
+        try{
+            File file = new File(JSON_DIR+TODO_ITEMS_FILE);
+            todoItems = objectMapper.readValue(file, new TypeReference<ArrayList<TodoItem>>(){});
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
+        return todoItems;
     }
 
     public void saveTodoItemsToJSON(Collection<TodoItem> todoItems){
