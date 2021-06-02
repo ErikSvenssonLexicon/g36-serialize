@@ -1,6 +1,7 @@
 package org.example.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class AppUser implements Serializable {
@@ -9,13 +10,15 @@ public class AppUser implements Serializable {
     private String password;
     private boolean active;
     private String role;
+    private LocalDate birthDate;
 
-    public AppUser(int id, String username, String password, boolean active, String role) {
+    public AppUser(int id, String username, String password, boolean active, String role, LocalDate birthDate) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.active = active;
         this.role = role;
+        this.birthDate = birthDate;
     }
 
     //Serializable objects need to have a default constructor by contract
@@ -67,12 +70,12 @@ public class AppUser implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AppUser appUser = (AppUser) o;
-        return getId() == appUser.getId() && isActive() == appUser.isActive() && Objects.equals(getUsername(), appUser.getUsername()) && Objects.equals(getRole(), appUser.getRole());
+        return getId() == appUser.getId() && isActive() == appUser.isActive() && Objects.equals(getUsername(), appUser.getUsername()) && Objects.equals(getRole(), appUser.getRole()) && Objects.equals(birthDate, appUser.birthDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getUsername(), isActive(), getRole());
+        return Objects.hash(getId(), getUsername(), isActive(), getRole(), birthDate);
     }
 
     @Override
@@ -82,6 +85,7 @@ public class AppUser implements Serializable {
                 ", username='" + username + '\'' +
                 ", active=" + active +
                 ", role='" + role + '\'' +
+                ", birthDate=" + birthDate +
                 '}';
     }
 }
