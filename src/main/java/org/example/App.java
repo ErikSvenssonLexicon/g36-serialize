@@ -3,6 +3,8 @@ package org.example;
 import org.example.io.ObjectSerializerManager;
 import org.example.model.AppUser;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -13,17 +15,18 @@ public class App
 {
     public static void main( String[] args )
     {
-        ObjectSerializerManager manager = new ObjectSerializerManager();
+        ObjectSerializerManager manager = ObjectSerializerManager.getInstance();
 
-        String path = "src/main/resources/serialized_objects/appUser.ser";
+        List<AppUser> appUserList = Arrays.asList(
+                new AppUser(1, "terminator", "hastalavista123", true, "admin"),
+                new AppUser(2, "connor", "connor123", true, "user")
+        );
 
-        Optional<AppUser> optional = manager.read(path);
+        manager.save(appUserList);
 
 
-        if(optional.isPresent()){
-            System.out.println(optional.get());
-        }else{
-            System.out.println("Could not load object on path " + path);
-        }
+
+
+
     }
 }
