@@ -3,10 +3,7 @@ package org.example.io;
 import org.example.model.AppUser;
 
 import java.io.*;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 public class ObjectSerializerManager {
 
@@ -18,21 +15,37 @@ public class ObjectSerializerManager {
         return INSTANCE;
     }
 
-
-
-    private final Set<AppUser> appUsers;
-
     private ObjectSerializerManager(){
-        appUsers = new HashSet<>();
     }
 
-    public void save(Collection<AppUser> appUsers){
+    public void save(List<AppUser> appUsers){
         String target = DIRECTORY+FILE;
         try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(target))){
             out.writeObject(appUsers);
         }catch (IOException ex){
             ex.printStackTrace();
         }
+    }
+
+    public List<AppUser> findAll(){
+        List<AppUser> appUsers = new ArrayList<>();
+        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream(DIRECTORY+FILE))){
+            appUsers = (List<AppUser>) in.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return appUsers;
+    }
+
+    public Optional<AppUser> findById(int id){
+        AppUser appUser = null;
+        for(AppUser user : findAll()){
+            if(user.getId() == id){
+                appUser = user;
+                break;
+            }
+        }
+        return Optional.ofNullable(appUser);
     }
 
 

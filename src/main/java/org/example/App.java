@@ -22,7 +22,7 @@ public class App
                 new AppUser(2, "connor", "connor123", true, "user")
         );
 
-        manager.save(appUserList);
+        manager.findById(2).ifPresent(System.out::println);
 
 
 
