@@ -2,9 +2,8 @@ package org.example.io;
 
 import org.example.model.AppUser;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
+import java.util.Optional;
 
 public class ObjectSerializerManager {
 
@@ -17,6 +16,16 @@ public class ObjectSerializerManager {
             ex.printStackTrace();
         }
         return appUser;
+    }
+
+    public Optional<AppUser> read(String path){
+        AppUser appUser = null;
+        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream(path))){
+            appUser = (AppUser) in.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return Optional.ofNullable(appUser);
     }
 
 
